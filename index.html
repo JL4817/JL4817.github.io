@@ -432,20 +432,19 @@
         </div>
 
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('about', this)">About</button>
-            <button class="nav-tab" onclick="showTab('projects', this)">Projects</button>
-            <button class="nav-tab" onclick="showTab('skills', this)">Skills</button>
-            <button class="nav-tab" onclick="showTab('learning', this)">Learning</button>
-            <button class="nav-tab" onclick="showTab('contact', this)">Contact</button>
+            <button class="nav-tab active" onclick="showTab('about')">About</button>
+            <button class="nav-tab" onclick="showTab('projects')">Projects</button>
+            <button class="nav-tab" onclick="showTab('skills')">Skills</button>
+            <button class="nav-tab" onclick="showTab('learning')">Learning</button>
+            <button class="nav-tab" onclick="showTab('contact')">Contact</button>
         </div>
 
         <div class="content-area">
             <div id="about" class="tab-content active">
                 <h2>About Me</h2>
                 <p style="font-size: 1.1em; line-height: 1.8; margin-top: 20px;">
-                    Welcome to my digital portfolio! I'm passionate about computer science, cybersecurity, and solving problems by creating innovative solutions and methods through programming.
+                    Welcome to my digital portfolio! I'm passionate about computer science, cybersecurity, and solving problems by creating innovative solutions and methods through programming. 
                 </p>
-                <img src="https://i.imgur.com/TCJmIUA.jpg" alt="Michael Jinpil Lee" style="width: 300px; height: auto; border-radius: 10px; margin-top: 20px; display: block; margin-left: auto; margin-right: auto;">
                 <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
                 </p>
             </div>
@@ -764,19 +763,20 @@ int main() {
             }
         }
 
-        function showTab(tabName, clickedButton) {
+        function showTab(tabName) {
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => {
                 content.classList.remove('active');
             });
+
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
+
             document.getElementById(tabName).classList.add('active');
-            if (clickedButton) {
-                clickedButton.classList.add('active');
-            }
+
+            event.target.classList.add('active');
         }
 
         function showProgrammingDetails() {
@@ -784,10 +784,12 @@ int main() {
             tabContents.forEach(content => {
                 content.classList.remove('active');
             });
+
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
+
             document.getElementById('programming-details').classList.add('active');
         }
 
@@ -796,15 +798,38 @@ int main() {
             tabContents.forEach(content => {
                 content.classList.remove('active');
             });
+
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
+
             document.getElementById('cybersecurity-details').classList.add('active');
         }
+
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.header');
             const speed = scrolled * 0.5;
             parallax.style.transform = `translateY(${speed}px)`;
         });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-category, .contact-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
