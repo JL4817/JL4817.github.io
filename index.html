@@ -439,15 +439,16 @@
             <button class="nav-tab" onclick="showTab('contact')">Contact</button>
         </div>
 
-        <div id="about" class="tab-content active">
-            <h2>About Me</h2>
-            <p style="font-size: 1.1em; line-height: 1.8; margin-top: 20px;">
-                Welcome to my digital portfolio! I'm passionate about computer science, cybersecurity, and solving problems by creating innovative solutions and methods through programming.
-            </p>
-            <img src="https://imgur.com/TCJmIUA.jpg" alt="Michael Jinpil Lee" style="width: 300px; height: auto; border-radius: 10px; margin-top: 20px; display: block; margin-left: auto; margin-right: auto;">
-            <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
-            </p>
-         </div>
+        <div class="content-area">
+            <div id="about" class="tab-content active">
+                <h2>About Me</h2>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 20px;">
+                    Welcome to my digital portfolio! I'm passionate about computer science, cybersecurity, and solving problems by creating innovative solutions and methods through programming.
+                </p>
+                <img src="https://i.imgur.com/TCJmIUA.jpg" alt="Michael Jinpil Lee" style="width: 300px; height: auto; border-radius: 10px; margin-top: 20px; display: block; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
+                </p>
+            </div>
 
             <div id="projects" class="tab-content">
                 <h2>My Projects</h2>
@@ -827,9 +828,4 @@ int main() {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.project-card, .skill-category, .contact-item').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+        document.querySelectorAll('.project-card, .skill-category, .contact-item
