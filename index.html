@@ -432,11 +432,11 @@
         </div>
 
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('about')">About</button>
-            <button class="nav-tab" onclick="showTab('projects')">Projects</button>
-            <button class="nav-tab" onclick="showTab('skills')">Skills</button>
-            <button class="nav-tab" onclick="showTab('learning')">Learning</button>
-            <button class="nav-tab" onclick="showTab('contact')">Contact</button>
+            <button class="nav-tab active" onclick="showTab('about', this)">About</button>
+            <button class="nav-tab" onclick="showTab('projects', this)">Projects</button>
+            <button class="nav-tab" onclick="showTab('skills', this)">Skills</button>
+            <button class="nav-tab" onclick="showTab('learning', this)">Learning</button>
+            <button class="nav-tab" onclick="showTab('contact', this)">Contact</button>
         </div>
 
         <div class="content-area">
@@ -467,7 +467,6 @@
                 </div>
               </div>
             </div>
-          </div>
           
             <div id="projects" class="tab-content">
                 <h2>My Projects</h2>
@@ -674,7 +673,7 @@
             }
         }
 
-        function showTab(tabName) {
+        function showTab(tabName, clickedButton) {
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => {
                 content.classList.remove('active');
@@ -687,7 +686,16 @@
 
             document.getElementById(tabName).classList.add('active');
 
-            event.target.classList.add('active');
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            } else {
+                const matchingTab = Array.from(tabs).find(tab => 
+                    tab.getAttribute('onclick').includes(`'${tabName}'`)
+                );
+                if (matchingTab) {
+                    matchingTab.classList.add('active');
+                }
+            }
         }
 
         function showProgrammingDetails() {
